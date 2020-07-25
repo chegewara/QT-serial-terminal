@@ -53,9 +53,12 @@
 #include "ui_mainwindow.h"
 #include "console.h"
 #include "settingsdialog.h"
+#include "dialog.h"
 
 #include <QLabel>
 #include <QMessageBox>
+#include <QDockWidget>
+#include <QByteArray>
 
 //! [0]
 MainWindow::MainWindow(QWidget *parent) :
@@ -65,13 +68,14 @@ MainWindow::MainWindow(QWidget *parent) :
     m_console(new Console),
     m_settings(new SettingsDialog),
 //! [1]
-    m_serial(new QSerialPort(this))
+    m_serial(new QSerialPort(this)),
 //! [1]
+    sxDialog(new Dialog)
 {
 //! [0]
     m_ui->setupUi(this);
     m_console->setEnabled(false);
-    setCentralWidget(m_console);
+//    setCentralWidget(m_console);
 
     m_ui->actionConnect->setEnabled(true);
     m_ui->actionDisconnect->setEnabled(false);
@@ -79,6 +83,11 @@ MainWindow::MainWindow(QWidget *parent) :
     m_ui->actionConfigure->setEnabled(true);
     m_ui->actionSettings->setEnabled(false);
     m_ui->statusBar->addWidget(m_status);
+
+    QDockWidget *dockWidget = new QDockWidget(tr("Dock Widget"), this);
+        dockWidget->setAllowedAreas(Qt::TopDockWidgetArea);
+        dockWidget->setWidget(m_console);
+        addDockWidget(Qt::TopDockWidgetArea, dockWidget);
 
     initActionsConnections();
 
@@ -88,7 +97,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(m_serial, &QSerialPort::readyRead, this, &MainWindow::readData);
 //! [2]
     connect(m_console, &Console::getData, this, &MainWindow::writeData);
-    connect(&sxDialog, &Dialog::updateSettings, this, &MainWindow::writeData);
+    connect(sxDialog, &Dialog::updateSettings, this, &MainWindow::writeData);
 
 //! [3]
 }
@@ -111,7 +120,7 @@ void MainWindow::openSerialPort()
     m_serial->setStopBits(p.stopBits);
     m_serial->setFlowControl(p.flowControl);
     if (m_serial->open(QIODevice::ReadWrite)) {
-        m_console->setEnabled(true);
+//        m_console->setEnabled(true);
         m_console->setLocalEchoEnabled(p.localEchoEnabled);
         m_ui->actionConnect->setEnabled(false);
         m_ui->actionDisconnect->setEnabled(true);
@@ -186,6 +195,7 @@ void MainWindow::initActionsConnections()
     connect(m_ui->actionAboutQt, &QAction::triggered, qApp, &QApplication::aboutQt);
     connect(m_ui->actionSettings, &QAction::triggered, this, &MainWindow::openSXsettings);
 
+    connect(m_ui->sendBtn, SIGNAL(clicked()), this, SLOT(sendData()));
 }
 
 void MainWindow::showStatusMessage(const QString &message)
@@ -195,5 +205,12 @@ void MainWindow::showStatusMessage(const QString &message)
 
 void MainWindow::openSXsettings()
 {
-    sxDialog.show();
+    sxDialog->show();
 }
+
+void MainWindow::sendData()
+{
+    QByteArray msg(m_ui->sendMsg->toPlainText().toLocal8Bit());
+    writeData(msg);
+}
+

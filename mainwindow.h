@@ -54,7 +54,6 @@
 
 #include <QMainWindow>
 #include <QSerialPort>
-#include <dialog.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -68,6 +67,7 @@ QT_END_NAMESPACE
 
 class Console;
 class SettingsDialog;
+class Dialog;
 
 class MainWindow : public QMainWindow
 {
@@ -83,6 +83,7 @@ private slots:
     void about();
     void writeData(const QByteArray &data);
     void readData();
+    void sendData();
 
     void handleError(QSerialPort::SerialPortError error);
     void openSXsettings();
@@ -98,7 +99,7 @@ private:
     Console *m_console = nullptr;
     SettingsDialog *m_settings = nullptr;
     QSerialPort *m_serial = nullptr;
-    Dialog sxDialog;
+    Dialog *sxDialog = nullptr;
 };
 
 #endif // MAINWINDOW_H
