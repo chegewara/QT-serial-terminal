@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>479</width>
+    <height>215</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QDialogButtonBox" name="buttonBox">
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>30</y>
+     <width>81</width>
+     <height>241</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>62</x>
+     <y>32</y>
+     <width>72</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Frequency</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>62</x>
+     <y>63</y>
+     <width>74</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Bandwidth</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>62</x>
+     <y>94</y>
+     <width>114</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Spreading factor</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>62</x>
+     <y>125</y>
+     <width>80</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Coding rate</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>62</x>
+     <y>156</y>
+     <width>105</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Package length</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="bandwidth">
+   <property name="geometry">
+    <rect>
+     <x>182</x>
+     <y>63</y>
+     <width>121</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>200</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>400</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>800</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1600</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="spreadingFactor">
+   <property name="geometry">
+    <rect>
+     <x>182</x>
+     <y>94</y>
+     <width>121</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>SF5</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SF6</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SF7</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SF8</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SF9</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SF10</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SF11</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>SF12</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="codingRate">
+   <property name="geometry">
+    <rect>
+     <x>182</x>
+     <y>125</y>
+     <width>121</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>4/5</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>4/6</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>4/7</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>4/8</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>LI 4/5</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>LI 4/6</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>LI 4/7</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QPlainTextEdit" name="packetLength">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>160</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="frequency">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>30</y>
+     <width>121</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>Dialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>Dialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
