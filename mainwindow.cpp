@@ -195,7 +195,7 @@ void MainWindow::initActionsConnections()
     connect(m_ui->actionClear, &QAction::triggered, m_console, &Console::clear);
     connect(m_ui->actionAbout, &QAction::triggered, this, &MainWindow::about);
     connect(m_ui->actionAboutQt, &QAction::triggered, qApp, &QApplication::aboutQt);
-    connect(m_ui->actionSettings, &QAction::triggered, this, &MainWindow::openSXsettings);
+    connect(m_ui->actionSettings, &QAction::triggered, sxDialog, &Dialog::show);
 
     connect(m_ui->sendBtn, SIGNAL(clicked()), this, SLOT(sendData()));
 }
@@ -205,14 +205,15 @@ void MainWindow::showStatusMessage(const QString &message)
     m_status->setText(message);
 }
 
-void MainWindow::openSXsettings()
-{
-    sxDialog->show();
-}
-
 void MainWindow::sendData()
 {
+    QByteArray msg0(2, 0);
     QByteArray msg(m_ui->sendMsg->toPlainText().toLocal8Bit());
+    msg0[0] = 0xE0;
+    msg0[1] = msg.length();
+    writeData(msg0);
+
     writeData(msg);
+    m_ui->sendMsg->setPlainText("");
 }
 

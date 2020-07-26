@@ -86,7 +86,6 @@ private slots:
     void sendData();
 
     void handleError(QSerialPort::SerialPortError error);
-    void openSXsettings();
 
 private:
     void initActionsConnections();
