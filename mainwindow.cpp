@@ -120,7 +120,9 @@ void MainWindow::openSerialPort()
     m_serial->setStopBits(p.stopBits);
     m_serial->setFlowControl(p.flowControl);
     if (m_serial->open(QIODevice::ReadWrite)) {
-//        m_console->setEnabled(true);
+        m_serial->setRequestToSend(true);
+        m_serial->setDataTerminalReady(true);
+        m_console->setEnabled(true);
         m_console->setLocalEchoEnabled(p.localEchoEnabled);
         m_ui->actionConnect->setEnabled(false);
         m_ui->actionDisconnect->setEnabled(true);
