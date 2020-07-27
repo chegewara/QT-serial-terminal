@@ -120,8 +120,10 @@ void MainWindow::openSerialPort()
     m_serial->setStopBits(p.stopBits);
     m_serial->setFlowControl(p.flowControl);
     if (m_serial->open(QIODevice::ReadWrite)) {
+#ifdef Q_OS_WIN
         m_serial->setRequestToSend(true);
         m_serial->setDataTerminalReady(true);
+#endif
         m_console->setEnabled(true);
         m_console->setLocalEchoEnabled(p.localEchoEnabled);
         m_ui->actionConnect->setEnabled(false);
@@ -191,7 +193,7 @@ void MainWindow::initActionsConnections()
     connect(m_ui->actionConnect, &QAction::triggered, this, &MainWindow::openSerialPort);
     connect(m_ui->actionDisconnect, &QAction::triggered, this, &MainWindow::closeSerialPort);
     connect(m_ui->actionQuit, &QAction::triggered, this, &MainWindow::close);
-    connect(m_ui->actionConfigure, &QAction::triggered, m_settings, &SettingsDialog::show);
+    connect(m_ui->actionConfigure, &QAction::triggered, m_settings, &SettingsDialog::fillPortsInfo);
     connect(m_ui->actionClear, &QAction::triggered, m_console, &Console::clear);
     connect(m_ui->actionAbout, &QAction::triggered, this, &MainWindow::about);
     connect(m_ui->actionAboutQt, &QAction::triggered, qApp, &QApplication::aboutQt);

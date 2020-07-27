@@ -90,6 +90,9 @@ public:
 
     Settings settings() const;
 
+public slots:
+    void fillPortsInfo();
+
 private slots:
     void showPortInfo(int idx);
     void apply();
@@ -98,7 +101,7 @@ private slots:
 
 private:
     void fillPortsParameters();
-    void fillPortsInfo();
+
     void updateSettings();
 
 private:
